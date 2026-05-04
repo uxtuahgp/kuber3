@@ -8,7 +8,7 @@ alex@uxtu-note:~/Study/kuber3/kuber3$ kubectl create ns dep-ns
 namespace/dep-ns created
 ```  
   
-Создал манифест [kind: Deployment с одной репликой пода](deployment.yml).     
+Создал [манифест kind: Deployment с одной репликой пода](deployment.yml).     
 При применении манифеста поды падали в ошибку, из-за пересечения контейнеров по прослушиваемым портам.  
 Добавил в шаблон контейнера network-multitool env переменную с номером порта для прослушивания:  
 ```  
@@ -44,7 +44,7 @@ dep-app-76cd889cd4-gtwtr   2/2     Running   0          3m7s   10.1.69.204   uxt
 dep-app-76cd889cd4-m66jg   2/2     Running   0          7s     10.1.69.208   uxtu-note   <none>           <none>
 ```  
   
-Создал манифест kind: Service (прилагается)  
+Создал [манифест kind: Service](service.yml)  
 Применил манифест:  
 ```  
 alex@uxtu-note:~/Study/kuber3/kuber3$ kubectl apply -f service.yml -n dep-ns
@@ -54,7 +54,7 @@ NAME          TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)               A
 dep-service   ClusterIP   10.152.183.221   <none>        10080/TCP,10081/TCP   9s    app=dep-app
 ```  
   
-Создал под для проверки доступности сервиса изнутри k8s
+Создал [под для проверки доступности сервиса](pod.yml) изнутри k8s
 ```
 alex@uxtu-note:~/Study/kuber3/kuber3$ kubectl apply -f pod.yml -n dep-ns
 pod/multitool-pod created
@@ -99,7 +99,7 @@ WBITT Network MultiTool (with NGINX) - dep-app-76cd889cd4-gtwtr - 10.1.69.204 - 
 
 ### Задание 2 - Обеспечить старт основного контейнера при выполнении условий ###  
   
-Создал манифест сервиса dep2-service:  
+Создал [манифест сервиса dep2-service](task2/service.yml):  
 ```
 apiVersion: v1
 kind: Service
@@ -116,7 +116,7 @@ spec:
 ```  
   
 
-Создал манифест Deployment с initContainers:
+Создал [манифест Deployment](task2/deployment.yml) с initContainers:
 ```
 apiVersion: apps/v1
 kind: Deployment
