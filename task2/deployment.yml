@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: dep2-app
+  labels: 
+    app: dep2-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dep2-app
+  template:
+    metadata:
+      labels:
+        app: dep2-app
+    spec:
+      containers: 
+        - name: nginx
+          image: nginx:latest
+          ports:
+            - containerPort: 80
+      initContainers:
+        - name: dep2-init
+          image: busybox:latest
+          command: ['sh', '-c', 'until nslookup dep2-service.dep-ns.svc.cluster.local; do echo waiting for myservice; sleep 2; done']
+          image: busybox
+
