@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Deployment
+metadata: 
+  name: dep-app
+  labels: 
+    app: dep-app
+spec:
+  replicas: 2
+  selector:
+    matchlabels:
+      app: dep-app
+  template:
+    metadata:
+      labels:
+        app: dep-app
+    spec:
+      containers: 
+        - name: dep-nginx
+          image: nginx:latest
+          ports:
+            containerPort: 80
+        - name: dep-multitool
+          image: wbitt/network-multitool
