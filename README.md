@@ -8,7 +8,7 @@ alex@uxtu-note:~/Study/kuber3/kuber3$ kubectl create ns dep-ns
 namespace/dep-ns created
 ```  
   
-Создал манифест kind: Deployment с одной репликой пода.     
+Создал манифест [kind: Deployment с одной репликой пода](deployment.yml).     
 При применении манифеста поды падали в ошибку, из-за пересечения контейнеров по прослушиваемым портам.  
 Добавил в шаблон контейнера network-multitool env переменную с номером порта для прослушивания:  
 ```  
